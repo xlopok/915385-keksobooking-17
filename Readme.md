@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Никита Воробьев](https://up.htmlacademy.ru/javascript/17/user/915385).
-* Наставник: `Неизвестно`.
+* Наставник: `Андрей Фидельман`, (https://htmlacademy.ru/profile/id773165)
 
 ---
 
