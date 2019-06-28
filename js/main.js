@@ -5,9 +5,9 @@
 var housingTypeArray = ['palace', 'flat', 'house', 'bungalo'];
 
 // Получить рандомное число от и до
-function myRandom (from, to) {
-  return Math.floor((Math.random() * (to - from + 1)) + from)
-};
+function myRandom(from, to) {
+  return Math.floor((Math.random() * (to - from + 1)) + from);
+}
 
 // Получить раномный элемент из массива
 var getRandomArrayElement = function (myArray) {
@@ -18,8 +18,8 @@ var getRandomArrayElement = function (myArray) {
 // Получить рандомное значение Х метки в зависисости от ширины блока
 
 var getMapWidth = function (block) {
-  return myRandom (0, block.offsetWidth)
-}
+  return myRandom(0, block.offsetWidth);
+};
 
 var mockerDataGenerator = function () {
   var dataArray = [];
@@ -27,29 +27,29 @@ var mockerDataGenerator = function () {
   for (var i = 0; i < 8; i++) {
 
     dataArray[i] = {
-      "author": {
-        "avatar": 'img/avatars/user' + '0' + myRandom (1, 8) +'.png'
+      'author': {
+        'avatar': 'img/avatars/user' + '0' + myRandom(1, 8) + '.png'
         // строка, адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} это число от 1 до 8 с ведущим нулём. Например, 01, 02 и т. д. Адреса изображений не повторяются
       },
-      "offer": {
-        "type": getRandomArrayElement(housingTypeArray)
+      'offer': {
+        'type': getRandomArrayElement(housingTypeArray)
         // строка с одним из четырёх фиксированных значений: palace, flat, house или bungalo
       },
 
-      "location": {
-        "x": (getMapWidth(map) + 'px'),
+      'location': {
+        'x': (getMapWidth(map) + 'px'),
         //  случайное число, координата x метки на карте. Значение ограничено размерами блока, в котором перетаскивается метка.
-        "y": (myRandom (130, 630) + 'px')
+        'y': (myRandom(130, 630) + 'px')
         // случайное число, координата y метки на карте от 130 до 630.
       }
-    }
+    };
   }
   return dataArray;
-}
+};
 
 // --------------------------------------------------------------------
 
-//2. У блока .map уберите класс .map--faded.
+// 2. У блока .map уберите класс .map--faded.
 
 var map = document.querySelector('.map');
 map.classList.remove('map--faded');
@@ -69,7 +69,7 @@ var renderLabels = function (label) {
   labelElement.querySelector('img').alt = label.offer.type;
 
   return labelElement;
-}
+};
 
 // Вызываем функцию для создания массива объектов с данными (пока не получаем данные с сервера)
 var mocker = mockerDataGenerator();
@@ -87,7 +87,7 @@ for (var i = 0; i < mocker.length; i++) {
 
 labelsEmbeded.appendChild(fragment);
 
-console.log(renderLabels(mocker[0]));
+// console.log(renderLabels(mocker[0]));
 // console.log(renderLabels(mocker));
 
-console.log(mockerDataGenerator());
+// console.log(mockerDataGenerator());
