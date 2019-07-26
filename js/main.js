@@ -45,8 +45,6 @@ var mockerDataGenerator = function () {
 // 2. У блока .map уберите класс .map--faded.
 
 var map = document.querySelector('.map');
-// Временно вернули страницу в исходное состояние (неактивное)
-// map.classList.remove('map--faded');
 
 // 3. На основе данных, созданных в первом пункте, создайте DOM-элементы, соответствующие меткам на карте, и заполните их данными из массива. Итоговую разметку метки .map__pin можно взять из шаблона #pin.
 
@@ -74,9 +72,6 @@ var fragment = document.createDocumentFragment();
 for (var i = 0; i < mocker.length; i++) {
   fragment.appendChild(renderLabels(mocker[i]));
 }
-// Временно вернули страницу в исходное состояние (неактивное)
-// labelsEmbeded.appendChild(fragment);
-
 
 // Добавляем неактивное состояние формы
 
@@ -104,7 +99,6 @@ var enablePage = function () {
 
 inputAddress.value = mainLabel.offsetLeft + ', ' + mainLabel.offsetTop;
 
-// mainLabel.addEventListener('click', enablePage);
 mainLabel.addEventListener('mouseup', function () {
   inputAddress.value = mainLabel.offsetLeft + ', ' + mainLabel.offsetTop;
 });
