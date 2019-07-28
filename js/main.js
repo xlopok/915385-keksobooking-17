@@ -45,8 +45,6 @@ var mockerDataGenerator = function () {
 // 2. У блока .map уберите класс .map--faded.
 
 var map = document.querySelector('.map');
-// Временно вернули страницу в исходное состояние (неактивное)
-// map.classList.remove('map--faded');
 
 // 3. На основе данных, созданных в первом пункте, создайте DOM-элементы, соответствующие меткам на карте, и заполните их данными из массива. Итоговую разметку метки .map__pin можно взять из шаблона #pin.
 
@@ -74,9 +72,6 @@ var fragment = document.createDocumentFragment();
 for (var i = 0; i < mocker.length; i++) {
   fragment.appendChild(renderLabels(mocker[i]));
 }
-// Временно вернули страницу в исходное состояние (неактивное)
-// labelsEmbeded.appendChild(fragment);
-
 
 // Добавляем неактивное состояние формы
 
@@ -104,7 +99,6 @@ var enablePage = function () {
 
 inputAddress.value = mainLabel.offsetLeft + ', ' + mainLabel.offsetTop;
 
-mainLabel.addEventListener('click', enablePage);
 mainLabel.addEventListener('mouseup', function () {
   inputAddress.value = mainLabel.offsetLeft + ', ' + mainLabel.offsetTop;
 });
@@ -160,4 +154,59 @@ timeOut.addEventListener('change', function () {
       timeIn.options[i].selected = 'selected';
     }
   }
+});
+
+// module5-task1: В этом задании мы решим задачу перемещения главного маркера (.map__pin--main) по карте.
+
+mainLabel.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+
+  var limits = {
+    top: 130,
+    right: map.offsetWidth,
+    bottom: 630,
+    left: map.offsetLeft
+  };
+
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+    enablePage();
+    inputAddress.value = mainLabel.offsetLeft + ', ' + mainLabel.offsetTop;
+
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+
+    mainLabel.style.top = (mainLabel.offsetTop - shift.y) + 'px';
+    mainLabel.style.left = (mainLabel.offsetLeft - shift.x) + 'px';
+
+    if (parseInt(mainLabel.style.left, 10) + mainLabel.offsetWidth > limits.right) {
+      mainLabel.style.left = limits.right - mainLabel.offsetWidth + 'px';
+    }
+
+    if (parseInt(mainLabel.style.top, 10) + mainLabel.offsetHeight < limits.top) {
+      mainLabel.style.top = mainLabel.offsetHeight + 'px';
+    }
+  };
+
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
 });
