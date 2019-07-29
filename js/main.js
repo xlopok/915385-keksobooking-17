@@ -62,7 +62,9 @@ var renderLabels = function (label) {
 };
 
 // Вызываем функцию для создания массива объектов с данными (пока не получаем данные с сервера)
-var mocker = mockerDataGenerator();
+var mocker =
+//  window.data.mockerDataGenerator;
+mockerDataGenerator();
 
 // 4. Отрисуйте сгенерированные DOM-элементы в блок .map__pins. Для вставки элементов используйте DocumentFragment.
 
@@ -128,7 +130,7 @@ selectType.addEventListener('change', function () {
   }
 });
 
-// Время заезда и выезда
+// // Время заезда и выезда
 
 var timeIn = form.querySelector('#timein');
 var timeOut = form.querySelector('#timeout');
