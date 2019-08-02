@@ -25,22 +25,34 @@
   };
 
   // Вызываем функцию для создания массива объектов с данными (пока не получаем данные с сервера)
-  var mocker = window.data.mockerDataGenerator;
+  // var mocker = window.data.mockerDataGenerator;
   // mockerDataGenerator();
 
   // 4. Отрисуйте сгенерированные DOM-элементы в блок .map__pins. Для вставки элементов используйте DocumentFragment.
 
   var labelsEmbeded = map.querySelector('.map__pins');
 
-  var fragment = document.createDocumentFragment();
-  for (var i = 0; i < mocker.length; i++) {
-    fragment.appendChild(renderLabels(mocker[i]));
-  }
+  // var fragment = document.createDocumentFragment();
+  // for (var i = 0; i < mocker.length; i++) {
+  //   fragment.appendChild(renderLabels(mocker[i]));
+  // }
+
+  // window.backend.getPins(function (pins) {
+  //   var fragment = document.createDocumentFragment();
+  //   for (var i = 0; i < pins.length; i++) {
+  //     fragment.appendChild(renderLabels(pins[i]));
+  //     // console.log(pins);
+  //   }
+  //   return fragment;
+
+  // })
 
   window.map = {
     mainLabel: mainLabel,
     labelsEmbeded: labelsEmbeded,
-    fragment: fragment
+    renderLabels: renderLabels,
+    // fragment: fragment
+    // dataPins: dataPins
   };
 
 })();

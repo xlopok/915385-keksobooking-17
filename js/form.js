@@ -6,7 +6,7 @@
 
   var map = window.data.map;
   var labelsEmbeded = window.map.labelsEmbeded;
-  var fragment = window.map.fragment;
+  // var fragment = window.map.fragment;
   // Добавляем неактивное состояние формы
   var mainLabel = window.map.mainLabel;
   var form = document.querySelector('.ad-form');
@@ -23,7 +23,14 @@
   var enablePage = function () {
     form.classList.remove('ad-form--disabled');
     map.classList.remove('map--faded');
-    labelsEmbeded.appendChild(fragment);
+    window.backend.getPins(function (pins) {
+      var fragment = document.createDocumentFragment();
+      for (var i = 0; i < pins.length; i++) {
+        fragment.appendChild(window.map.renderLabels(pins[i]));
+      }
+      labelsEmbeded.appendChild(fragment);
+    })
+    // labelsEmbeded.appendChild(fragment);
     for (i = 0; i < formFieldsets.length; i++) {
       formFieldsets[i].removeAttribute('disabled', 'disabled');
     }
